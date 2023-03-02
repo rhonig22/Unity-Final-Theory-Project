@@ -13,14 +13,21 @@ public class SimUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bunnyCount.SetText("Bunny Count: " + SimulationManager.InitialBunnyCount);
-        foxCount.SetText("Fox Count: " + SimulationManager.InitialFoxCount);
-        bearCount.SetText("Bear Count: " + SimulationManager.InitialBearCount);
+        UpdateCountText();
+        SimulationManager.countChanged.AddListener(UpdateCountText);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void UpdateCountText()
+    {
+        bunnyCount.SetText("Bunny Count: " + SimulationManager.CurrentBunnyCount);
+        foxCount.SetText("Fox Count: " + SimulationManager.CurrentFoxCount);
+        bearCount.SetText("Bear Count: " + SimulationManager.CurrentBearCount);
+
     }
 }

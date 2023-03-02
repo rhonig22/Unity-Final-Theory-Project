@@ -1225,7 +1225,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1759047387}
         m_TargetAssemblyTypeName: TitleScreenUIManager, Assembly-CSharp
-        m_MethodName: EndFoxEdit
+        m_MethodName: EndBearEdit
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
