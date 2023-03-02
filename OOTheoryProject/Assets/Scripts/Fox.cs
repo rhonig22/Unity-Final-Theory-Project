@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Inheritance from base class Animal
+// The fox class has a medium lifespan and can eat bunnies
 public class Fox : Animal
 {
     // Start is called before the first frame update
@@ -21,6 +23,7 @@ public class Fox : Animal
         base.Update();
     }
 
+    // Polymorphism, overriding move functionality
     public override void Move()
     {
         int slink = Random.Range(0, 3);
@@ -44,6 +47,7 @@ public class Fox : Animal
         return animal is Bunny;
     }
 
+    // Polymorphism, overriding procreation functionality
     public override void Procreate()
     {
         if (SimulationManager.CurrentFoxCount >= 2)

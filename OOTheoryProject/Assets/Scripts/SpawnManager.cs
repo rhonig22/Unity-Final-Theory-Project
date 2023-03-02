@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// All logic to spawn new animals is encapsulated in the SpawnManager
 public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance { get; private set; }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+// Inheritance from base class Animal
+// The bunny class has a short life span, but a chance to cause a population explosion
 public class Bunny : Animal
 {
 
@@ -31,6 +33,7 @@ public class Bunny : Animal
         base.Update();
     }
 
+    // Polymorphism, overriding move functionality
     public override void Move()
     {
         int hop = Random.Range(0, 4);
@@ -57,6 +60,7 @@ public class Bunny : Animal
         return false;
     }
 
+    // Polymorphism, overriding procreation functionality
     public override void Procreate()
     {
         if (SimulationManager.CurrentBunnyCount >= 2)

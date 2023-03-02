@@ -25,6 +25,7 @@ public class Animal : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+        // Abstracted away different tasks that need to be performed on update
         CheckProcreate();
         CheckLife();
         CheckMove();

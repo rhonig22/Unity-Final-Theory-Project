@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Inheritance from base class Animal
+// The bear class has a long lifespan and can eat both bunnies and foxes
 public class Bear : Animal
 {
     // Start is called before the first frame update
@@ -21,6 +23,7 @@ public class Bear : Animal
         base.Update();
     }
 
+    // Polymorphism, overriding move functionality
     public override void Move()
     {
         int lumber = Random.Range(0, 3);
@@ -44,6 +47,7 @@ public class Bear : Animal
         return animal is Fox || animal is Bear;
     }
 
+    // Polymorphism, overriding procreation functionality
     public override void Procreate()
     {
         if (SimulationManager.CurrentBearCount >= 2)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+// The logic managing the animal counts is encapsulated in the simulation manager
 public class SimulationManager : MonoBehaviour
 {
     public static SimulationManager Instance { get; private set; }
@@ -21,6 +22,7 @@ public class SimulationManager : MonoBehaviour
         get { return _initialBunnyCount; }
         set
         {
+            // verify user inputs are within range
             if (value <= 10 && value >= 0)
             {
                 _initialBunnyCount = value;
@@ -48,6 +50,7 @@ public class SimulationManager : MonoBehaviour
         get { return _initialFoxCount; }
         set
         {
+            // verify user inputs are within range
             if (value <= 6 && value >= 0)
             {
                 _initialFoxCount = value;
@@ -75,6 +78,7 @@ public class SimulationManager : MonoBehaviour
         get { return _initialBearCount; }
         set
         {
+            // verify user inputs are within range
             if (value <= 3 && value >= 0)
             {
                 _initialBearCount = value;
