@@ -7,10 +7,22 @@ public class Bunny : Animal
 {
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        timeStep = 2;
+        moveStep = 3;
+        if (SimulationManager.CurrentBunnyCount < 50)
+            procreateStep = 2;
+        else
+            procreateStep = 5;
+
         speed = 3;
+        spawnCount = 8;
+        if (SimulationManager.CurrentBunnyCount > 100)
+            lifeSpan = 3;
+        else
+            lifeSpan = 5;
+
+        base.Start();
     }
 
     // Update is called once per frame
@@ -40,8 +52,23 @@ public class Bunny : Animal
         gameObject.transform.Translate( Vector3.forward * speed, Space.Self );
     }
 
-    public override bool CanEat()
+    public override bool CanEat(Animal animal)
     {
         return false;
+    }
+
+    public override void Procreate()
+    {
+        if (SimulationManager.CurrentBunnyCount >= 2)
+        {
+            int spawn = Random.Range(0, spawnCount);
+            if (spawn == 0)
+                SpawnManager.Instance.SpawnBunnies(spawnCount);
+        }
+    }
+
+    protected override void OnDestroy()
+    {
+        SimulationManager.CurrentBunnyCount -= 1;
     }
 }

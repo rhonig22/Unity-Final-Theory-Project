@@ -5,10 +5,14 @@ using UnityEngine;
 public class Fox : Animal
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        timeStep = 1;
+        moveStep = 1;
+        procreateStep = 10;
         speed = 1;
+        spawnCount = 2;
+        lifeSpan = 20;
+        base.Start();
     }
 
     // Update is called once per frame
@@ -35,8 +39,22 @@ public class Fox : Animal
         gameObject.transform.Translate(Vector3.forward * speed, Space.Self);
     }
 
-    public override bool CanEat()
+    public override bool CanEat(Animal animal)
     {
-        return true;
+        return animal is Bunny;
+    }
+
+    public override void Procreate()
+    {
+        if (SimulationManager.CurrentFoxCount >= 2)
+        {
+            int spawn = Random.Range(0, spawnCount);
+            SpawnManager.Instance.SpawnFoxes(spawn);
+        }
+    }
+
+    protected override void OnDestroy()
+    {
+        SimulationManager.CurrentFoxCount -= 1;
     }
 }

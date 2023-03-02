@@ -5,10 +5,14 @@ using UnityEngine;
 public class Bear : Animal
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        timeStep = 3;
+        moveStep = 3;
+        procreateStep = 20;
         speed = 1;
+        spawnCount = 2;
+        lifeSpan = 100;
+        base.Start();
     }
 
     // Update is called once per frame
@@ -35,8 +39,22 @@ public class Bear : Animal
 
     }
 
-    public override bool CanEat()
+    public override bool CanEat(Animal animal)
     {
-        return true;
+        return animal is Fox || animal is Bear;
+    }
+
+    public override void Procreate()
+    {
+        if (SimulationManager.CurrentBearCount >= 2)
+        {
+            int spawn = Random.Range(0, spawnCount);
+            SpawnManager.Instance.SpawnBears(spawn);
+        }
+    }
+
+    protected override void OnDestroy()
+    {
+        SimulationManager.CurrentBearCount -= 1;
     }
 }

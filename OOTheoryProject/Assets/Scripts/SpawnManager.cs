@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager Instance { get; private set; }
+
     [SerializeField] private GameObject bunnyPrefab;
     [SerializeField] private GameObject foxPrefab;
     [SerializeField] private GameObject bearPrefab;
@@ -11,13 +13,22 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         SpawnBunnies(SimulationManager.InitialBunnyCount);
         SpawnFoxes(SimulationManager.InitialFoxCount);
         SpawnBears(SimulationManager.InitialBearCount);
     }
 
-    private void SpawnBunnies(int bunnyCount)
+    public void SpawnBunnies(int bunnyCount)
     {
+        SimulationManager.CurrentBunnyCount += bunnyCount;
         for (int i = 0; i < bunnyCount; i++)
         {
             Vector3 newPos = GetRandomPosition();
@@ -26,8 +37,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void SpawnFoxes(int foxCount)
+    public void SpawnFoxes(int foxCount)
     {
+        SimulationManager.CurrentFoxCount += foxCount;
         for (int i = 0; i < foxCount; i++)
         {
             Vector3 newPos = GetRandomPosition();
@@ -36,8 +48,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void SpawnBears(int bearCount)
+    public void SpawnBears(int bearCount)
     {
+        SimulationManager.CurrentBearCount += bearCount;
         for (int i = 0; i < bearCount; i++)
         {
             Vector3 newPos = GetRandomPosition();
@@ -48,8 +61,8 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GetRandomPosition()
     {
-        float spawnPosX = Random.Range(-SimulationManager.range, SimulationManager.range);
-        float spawnPosZ = Random.Range(-SimulationManager.range, SimulationManager.range);
+        float spawnPosX = Random.Range(-SimulationManager.xrange, SimulationManager.xrange);
+        float spawnPosZ = Random.Range(-SimulationManager.yrange, SimulationManager.yrange);
         Vector3 randomPos = new Vector3(spawnPosX, 0, spawnPosZ);
         return randomPos;
     }
