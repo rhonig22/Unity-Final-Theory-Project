@@ -12,17 +12,11 @@ public class Bunny : Animal
     protected override void Start()
     {
         moveStep = 3;
-        if (SimulationManager.CurrentBunnyCount < 50)
-            procreateStep = 2;
-        else
-            procreateStep = 5;
-
+        procreateStep = 2;
+        procreateChance = 7;
         speed = 3;
-        spawnCount = 8;
-        if (SimulationManager.CurrentBunnyCount > 100)
-            lifeSpan = 3;
-        else
-            lifeSpan = 5;
+        spawnCount = 5;
+        lifeSpan = 5;
 
         base.Start();
     }
@@ -65,8 +59,8 @@ public class Bunny : Animal
     {
         if (SimulationManager.CurrentBunnyCount >= 2)
         {
-            int spawn = Random.Range(0, spawnCount);
-            if (spawn == 0)
+            int spawnChance = Random.Range(0, procreateChance);
+            if (spawnChance == 0)
                 SpawnManager.Instance.SpawnBunnies(spawnCount);
         }
     }

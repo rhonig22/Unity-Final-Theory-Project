@@ -7,8 +7,10 @@ public class Animal : MonoBehaviour
     protected int speed;
     protected int moveStep;
     protected int procreateStep;
+    protected int procreateChance;
     protected int spawnCount;
     protected int lifeSpan;
+    protected int eatCount = 0;
 
     private int currentMoveStep = 0;
     private int currentLife = 0;
@@ -28,6 +30,10 @@ public class Animal : MonoBehaviour
         // Abstracted away different tasks that need to be performed on update
         CheckProcreate();
         CheckLife();
+    }
+
+    protected void LateUpdate()
+    {
         CheckMove();
         KeepInBounds();
     }
@@ -103,6 +109,7 @@ public class Animal : MonoBehaviour
         {
             Destroy(collision.gameObject);
             lifeSpan++;
+            eatCount++;
         }
     }
 

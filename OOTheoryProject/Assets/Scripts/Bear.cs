@@ -11,8 +11,9 @@ public class Bear : Animal
     {
         moveStep = 3;
         procreateStep = 20;
+        procreateChance = 100;
         speed = 1;
-        spawnCount = 2;
+        spawnCount = 1;
         lifeSpan = 100;
         base.Start();
     }
@@ -52,8 +53,9 @@ public class Bear : Animal
     {
         if (SimulationManager.CurrentBearCount >= 2)
         {
-            int spawn = Random.Range(0, spawnCount);
-            SpawnManager.Instance.SpawnBears(spawn);
+            int spawnChance = Random.Range(0, procreateChance - eatCount);
+            if (spawnChance == 0)
+                SpawnManager.Instance.SpawnBears(spawnChance);
         }
     }
 

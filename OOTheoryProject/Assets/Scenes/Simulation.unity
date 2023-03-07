@@ -508,6 +508,7 @@ MonoBehaviour:
   bunnyPrefab: {fileID: 5198481581374313819, guid: 491949664a1e19c4a91ef4604f8fcd79, type: 3}
   foxPrefab: {fileID: 5323356181533462717, guid: a9851d390950a41438489dfeed1c939a, type: 3}
   bearPrefab: {fileID: 3455004657167491277, guid: 446f402ed9d70a148a1c43d41d051184, type: 3}
+  treePrefab: {fileID: 4273207676395843068, guid: 5dd5543500ed0fb4b93109233412bd89, type: 3}
 --- !u!1 &1176741707
 GameObject:
   m_ObjectHideFlags: 0
