@@ -12,11 +12,11 @@ public class Bunny : Animal
     protected override void Start()
     {
         moveStep = 3;
-        procreateStep = 2;
+        procreateStep = 3;
         procreateChance = 7;
         speed = 3;
         spawnCount = 5;
-        lifeSpan = 5;
+        lifeSpan = Random.Range(5, 7); ;
 
         base.Start();
     }

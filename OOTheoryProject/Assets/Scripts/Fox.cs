@@ -14,7 +14,7 @@ public class Fox : Animal
         procreateChance = 2;
         speed = 1;
         spawnCount = 1;
-        lifeSpan = 20;
+        lifeSpan = Random.Range(20, 30); ;
         base.Start();
     }
 

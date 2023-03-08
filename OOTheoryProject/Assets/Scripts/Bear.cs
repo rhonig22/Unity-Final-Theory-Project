@@ -9,12 +9,12 @@ public class Bear : Animal
     // Start is called before the first frame update
     protected override void Start()
     {
-        moveStep = 3;
+        moveStep = 1;
         procreateStep = 20;
-        procreateChance = 100;
+        procreateChance = 50;
         speed = 1;
         spawnCount = 1;
-        lifeSpan = 100;
+        lifeSpan = Random.Range(100, 120);
         base.Start();
     }
 

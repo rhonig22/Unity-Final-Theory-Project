@@ -12,7 +12,7 @@ public class SimulationManager : MonoBehaviour
     public static float xrange = 20f;
     public static float yrange = 18f;
 
-    public static int currentSimulationSpeed = 1;
+    public static float currentSimulationSpeed = .5f;
 
     public static UnityEvent countChanged = new UnityEvent();
 
