@@ -1,63 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Animal : MonoBehaviour
 {
     protected int speed;
     protected int moveStep;
     protected int procreateStep;
+    protected int procreateChance;
     protected int spawnCount;
     protected int lifeSpan;
+    protected int eatCount = 0;
 
-    private int currentMoveStep = 0;
     private int currentLife = 0;
     private int birthday;
-    private int currentProcreateStep;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        birthday = GetTime();
-        currentProcreateStep = GetTime();
+        birthday = Timekeeper.GetTime();
+        StartCoroutine(MoveStep());
+        StartCoroutine(ProcreateStep());
     }
 
     // Update is called once per frame
     protected void Update()
     {
         // Abstracted away different tasks that need to be performed on update
-        CheckProcreate();
         CheckLife();
-        CheckMove();
-        KeepInBounds();
     }
 
-    private int GetTime()
+    private IEnumerator MoveStep()
     {
-        return Mathf.FloorToInt(Time.time) * SimulationManager.currentSimulationSpeed;
-    }
-
-    private void CheckMove()
-    {
-        if (GetTime() >= currentMoveStep + moveStep)
+        while (true)
         {
+            yield return new WaitForSeconds(moveStep / SimulationManager.currentSimulationSpeed);
             Move();
-            currentMoveStep = GetTime();
+            KeepInBounds();
         }
     }
 
-    private void CheckProcreate()
+    private IEnumerator ProcreateStep()
     {
-        if (GetTime() >= currentProcreateStep + procreateStep)
+        while (true)
         {
+            yield return new WaitForSeconds(procreateStep / SimulationManager.currentSimulationSpeed);
             Procreate();
-            currentProcreateStep = GetTime();
         }
     }
 
     private void CheckLife()
     {
-        currentLife = GetTime() - birthday;
+        currentLife = Timekeeper.GetTime() - birthday;
         if (currentLife == lifeSpan)
         {
             Destroy(gameObject);
@@ -103,6 +98,7 @@ public class Animal : MonoBehaviour
         {
             Destroy(collision.gameObject);
             lifeSpan++;
+            eatCount++;
         }
     }
 

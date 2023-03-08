@@ -9,11 +9,12 @@ public class Bear : Animal
     // Start is called before the first frame update
     protected override void Start()
     {
-        moveStep = 3;
+        moveStep = 1;
         procreateStep = 20;
+        procreateChance = 50;
         speed = 1;
-        spawnCount = 2;
-        lifeSpan = 100;
+        spawnCount = 1;
+        lifeSpan = Random.Range(100, 120);
         base.Start();
     }
 
@@ -52,8 +53,9 @@ public class Bear : Animal
     {
         if (SimulationManager.CurrentBearCount >= 2)
         {
-            int spawn = Random.Range(0, spawnCount);
-            SpawnManager.Instance.SpawnBears(spawn);
+            int spawnChance = Random.Range(0, procreateChance - eatCount);
+            if (spawnChance == 0)
+                SpawnManager.Instance.SpawnBears(spawnChance);
         }
     }
 

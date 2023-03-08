@@ -11,9 +11,10 @@ public class Fox : Animal
     {
         moveStep = 1;
         procreateStep = 10;
+        procreateChance = 2;
         speed = 1;
-        spawnCount = 2;
-        lifeSpan = 20;
+        spawnCount = 1;
+        lifeSpan = Random.Range(20, 30); ;
         base.Start();
     }
 
@@ -52,8 +53,9 @@ public class Fox : Animal
     {
         if (SimulationManager.CurrentFoxCount >= 2)
         {
-            int spawn = Random.Range(0, spawnCount);
-            SpawnManager.Instance.SpawnFoxes(spawn);
+            int spawnChance = Random.Range(0, procreateChance);
+            if (spawnChance == 0)
+                SpawnManager.Instance.SpawnFoxes(spawnCount);
         }
     }
 

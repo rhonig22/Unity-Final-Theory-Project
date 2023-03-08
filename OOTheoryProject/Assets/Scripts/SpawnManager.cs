@@ -10,6 +10,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject bunnyPrefab;
     [SerializeField] private GameObject foxPrefab;
     [SerializeField] private GameObject bearPrefab;
+    [SerializeField] private GameObject treePrefab;
+
+    private int treeCount = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +25,20 @@ public class SpawnManager : MonoBehaviour
 
         Instance = this;
 
+        SpawnTrees(treeCount);
         SpawnBunnies(SimulationManager.InitialBunnyCount);
         SpawnFoxes(SimulationManager.InitialFoxCount);
         SpawnBears(SimulationManager.InitialBearCount);
+    }
+
+    private void SpawnTrees(int treeCount)
+    {
+        for (int i = 0; i < treeCount; i++)
+        {
+            Vector3 newPos = GetRandomPosition();
+            newPos.y = treePrefab.transform.localScale.y / 2;
+            Instantiate(treePrefab, newPos, treePrefab.transform.rotation);
+        }
     }
 
     public void SpawnBunnies(int bunnyCount)
