@@ -12,18 +12,18 @@ public class SimulationManager : MonoBehaviour
     public static float xrange = 20f;
     public static float yrange = 18f;
 
-    public static float currentSimulationSpeed = .5f;
+    public static float currentSimulationSpeed = 1f;
 
     public static UnityEvent countChanged = new UnityEvent();
 
-    private static int _initialBunnyCount = 10;
+    private static int _initialBunnyCount = 20;
     private static int _bunnyCount = 0;
     public static int InitialBunnyCount {
         get { return _initialBunnyCount; }
         set
         {
             // verify user inputs are within range
-            if (value <= 10 && value >= 0)
+            if (value <= 20 && value >= 0)
             {
                 _initialBunnyCount = value;
             }
@@ -43,7 +43,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    private static int _initialFoxCount = 6;
+    private static int _initialFoxCount = 10;
     private static int _foxCount = 0;
     public static int InitialFoxCount
     {
@@ -51,7 +51,7 @@ public class SimulationManager : MonoBehaviour
         set
         {
             // verify user inputs are within range
-            if (value <= 6 && value >= 0)
+            if (value <= 10 && value >= 0)
             {
                 _initialFoxCount = value;
             }
@@ -71,7 +71,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    private static int _initialBearCount = 3;
+    private static int _initialBearCount = 2;
     private static int _bearCount = 0;
     public static int InitialBearCount
     {
@@ -79,7 +79,7 @@ public class SimulationManager : MonoBehaviour
         set
         {
             // verify user inputs are within range
-            if (value <= 3 && value >= 0)
+            if (value <= 2 && value >= 0)
             {
                 _initialBearCount = value;
             }
