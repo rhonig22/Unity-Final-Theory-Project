@@ -11,12 +11,12 @@ public class Bunny : Animal
     // Start is called before the first frame update
     protected override void Start()
     {
-        moveStep = 3;
+        moveStep = 1;
         procreateStep = 3;
-        procreateChance = 7;
+        procreateChance = 6;
         speed = 3;
-        spawnCount = 5;
-        lifeSpan = Random.Range(5, 7); ;
+        spawnCount = Random.Range(5, 10);
+        lifeSpan = Random.Range(5, 20);
 
         base.Start();
     }

@@ -33,7 +33,7 @@ public class Animal : MonoBehaviour
 
     private IEnumerator MoveStep()
     {
-        while (true)
+        while (SimulationManager.currentSimulationSpeed > 0)
         {
             yield return new WaitForSeconds(moveStep / SimulationManager.currentSimulationSpeed);
             Move();
@@ -43,7 +43,7 @@ public class Animal : MonoBehaviour
 
     private IEnumerator ProcreateStep()
     {
-        while (true)
+        while (SimulationManager.currentSimulationSpeed > 0)
         {
             yield return new WaitForSeconds(procreateStep / SimulationManager.currentSimulationSpeed);
             Procreate();

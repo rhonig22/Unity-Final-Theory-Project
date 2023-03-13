@@ -27,10 +27,11 @@ public class Bear : Animal
     // Polymorphism, overriding move functionality
     public override void Move()
     {
-        int lumber = Random.Range(0, 3);
+        int lumber = Random.Range(0, 4);
         switch (lumber)
         {
             case 0:
+            case 3:
                 gameObject.transform.Translate(Vector3.forward * speed, Space.Self);
                 break;
             case 1:
@@ -45,7 +46,7 @@ public class Bear : Animal
 
     public override bool CanEat(Animal animal)
     {
-        return animal is Fox || animal is Bear;
+        return animal is Fox || animal is Bunny;
     }
 
     // Polymorphism, overriding procreation functionality

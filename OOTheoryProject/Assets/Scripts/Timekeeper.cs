@@ -35,5 +35,6 @@ public class Timekeeper : MonoBehaviour
     public static void StopTime()
     {
         Instance.StopCoroutine(passTime);
+        SimulationManager.currentSimulationSpeed = 0;
     }
 }
