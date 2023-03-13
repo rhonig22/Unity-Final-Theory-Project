@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class Timekeeper : MonoBehaviour
     {
         Instance = this;
         time = 0;
+        SimulationManager.currentSimulationSpeed = 1;
         passTime = PassTime();
         StartCoroutine(passTime);
     }
@@ -27,6 +29,7 @@ public class Timekeeper : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log("passing");
             yield return new WaitForSeconds(1 / SimulationManager.currentSimulationSpeed);
             time++;
         }

@@ -13,6 +13,7 @@ public class SimUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI goalText;
     [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject failScreen;
     private DataManager dataManager;
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class SimUIManager : MonoBehaviour
         dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
         UpdateGoalText();
         dataManager.goalCompleted.AddListener(EndSim);
+        dataManager.goalFailed.AddListener(Failed);
     }
 
     // Update is called once per frame
@@ -40,11 +42,7 @@ public class SimUIManager : MonoBehaviour
 
     private void UpdateGoalText()
     {
-        string goalString = "";
-        foreach (Goal goal in dataManager.Goals) {
-            goalString += goal.GoalText;
-        }
-
+        string goalString = dataManager.ActiveGoal.GoalText;
         goalText.SetText(goalString);
     }
 
@@ -52,6 +50,17 @@ public class SimUIManager : MonoBehaviour
     {
         Timekeeper.StopTime();
         winScreen.SetActive(true);
+    }
+
+    private void Failed()
+    {
+        Timekeeper.StopTime();
+        failScreen.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void ReturnToTitle()

@@ -8,12 +8,14 @@ public class Goal
     public string GoalText { get; private set; }
     public bool IsComplete { get; private set; }
     public GoalRequirements Requirements { get; private set; }
+    public GoalRequirements FailCondition { get; private set; }
 
-    public Goal (string text, GoalRequirements requirements)
+    public Goal (string text, GoalRequirements requirements, GoalRequirements failCondition)
     {
         GoalText = text;
         IsComplete = false;
         Requirements = requirements;
+        FailCondition = failCondition;
     }
 
     public bool CheckRequirements(int time, AnimalCounts counts)
@@ -24,13 +26,9 @@ public class Goal
         }
 
         bool completed = false;
-        if (Requirements.MinTime != null)
+        if (Requirements.MinTime != null && time > Requirements.MinTime)
         {
-            
-        }
-        else if (Requirements.MaxTime != null)
-        {
-
+            completed = true;
         }
         else if (Requirements.MinAnimalCount!= null)
         {
@@ -44,6 +42,28 @@ public class Goal
         {
             IsComplete = true;
             return true;
+        }
+
+        return false;
+    }
+
+    public bool CheckFailure(int time, AnimalCounts counts)
+    {
+        if (IsComplete || FailCondition == null)
+        {
+            return false;
+        }
+
+        if (FailCondition.MaxTime != null && time > FailCondition.MaxTime)
+        {
+            return true;
+        }
+        else if (FailCondition.MaxAnimalCount != null)
+        {
+            if (FailCondition.MaxAnimalCount.BunnyCount <= counts.BunnyCount ||
+                FailCondition.MaxAnimalCount.FoxCount <= counts.FoxCount ||
+                FailCondition.MaxAnimalCount.BearCount <= counts.BearCount)
+                return true;
         }
 
         return false;

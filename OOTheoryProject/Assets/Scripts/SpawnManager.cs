@@ -12,7 +12,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject bearPrefab;
     [SerializeField] private GameObject treePrefab;
 
-    private int treeCount = 20;
+    private int treeCount = 40;
 
     // Start is called before the first frame update
     void Start()

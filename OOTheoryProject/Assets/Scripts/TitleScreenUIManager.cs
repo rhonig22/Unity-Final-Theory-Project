@@ -5,9 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenUIManager : MonoBehaviour
 {
+    private DataManager dataManager;
+
+    private void Start()
+    {
+        dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
+    }
+
     public void StartGame()
     {
+        dataManager.SetActiveGoal();
         SceneManager.LoadScene(1);
+    }
+
+    public void ViewGoalsList()
+    {
+        SceneManager.LoadScene(2);
     }
 
     public void EndBunnyEdit(string count)

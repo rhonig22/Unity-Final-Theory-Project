@@ -92,7 +92,6 @@ public class Animal : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("collision");
         Animal animal = collision.gameObject.GetComponent<Animal>();
         if (CanEat(animal))
         {
