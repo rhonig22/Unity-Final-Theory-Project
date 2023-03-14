@@ -29,7 +29,6 @@ public class Timekeeper : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("passing");
             yield return new WaitForSeconds(1 / SimulationManager.currentSimulationSpeed);
             time++;
         }

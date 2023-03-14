@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 
 public class Animal : MonoBehaviour
 {
+    [SerializeField] protected GameObject particles;
     protected int speed;
     protected int moveStep;
     protected int procreateStep;

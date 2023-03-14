@@ -11,6 +11,7 @@ public class SimUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI foxCount;
     [SerializeField] private TextMeshProUGUI bearCount;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI goalText;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject failScreen;
@@ -31,6 +32,7 @@ public class SimUIManager : MonoBehaviour
     void Update()
     {
         timerText.SetText("Time Passed: " + Timekeeper.GetTime());
+        moneyText.SetText("Money: " + MoneyManager.Money);
     }
 
     private void UpdateCountText()
@@ -66,5 +68,10 @@ public class SimUIManager : MonoBehaviour
     public void ReturnToTitle()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void AddHunter()
+    {
+        MoneyManager.Instance.AddHunter();
     }
 }
