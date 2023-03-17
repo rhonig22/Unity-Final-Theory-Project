@@ -69,6 +69,7 @@ public class Bunny : Animal
     protected override void OnDestroy()
     {
         SimulationManager.CurrentBunnyCount -= 1;
-        // Instantiate(particles, transform.position, particles.transform.rotation);
+        GameObject particle = Instantiate(particles, transform.position, particles.transform.rotation);
+        particle.transform.parent = gameObject.transform.parent;
     }
 }

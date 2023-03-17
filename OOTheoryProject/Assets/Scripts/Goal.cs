@@ -58,11 +58,20 @@ public class Goal
         {
             return true;
         }
-        else if (FailCondition.MaxAnimalCount != null)
+        
+        if (FailCondition.MaxAnimalCount != null)
         {
             if (FailCondition.MaxAnimalCount.BunnyCount <= counts.BunnyCount ||
                 FailCondition.MaxAnimalCount.FoxCount <= counts.FoxCount ||
                 FailCondition.MaxAnimalCount.BearCount <= counts.BearCount)
+                return true;
+        }
+
+        if (FailCondition.MinAnimalCount != null)
+        {
+            if (FailCondition.MinAnimalCount.BunnyCount >= counts.BunnyCount ||
+                FailCondition.MinAnimalCount.FoxCount >= counts.FoxCount ||
+                FailCondition.MinAnimalCount.BearCount >= counts.BearCount)
                 return true;
         }
 
