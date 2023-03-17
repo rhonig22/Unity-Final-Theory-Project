@@ -85,7 +85,8 @@ public class DataManager : MonoBehaviour
             },
             new GoalRequirements
             {
-                MaxAnimalCount = new AnimalCounts { BunnyCount = 100, FoxCount = 100, BearCount = 100 }
+                MaxAnimalCount = new AnimalCounts { BunnyCount = 100, FoxCount = 100, BearCount = 100 },
+                MinAnimalCount = new AnimalCounts { BunnyCount = 0, FoxCount = -1, BearCount = -1 }
             });
         Goals.Add(second);
 

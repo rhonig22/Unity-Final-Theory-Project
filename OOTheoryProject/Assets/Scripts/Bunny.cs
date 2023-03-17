@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 // Inheritance from base class Animal
 // The bunny class has a short life span, but a chance to cause a population explosion
@@ -68,5 +69,7 @@ public class Bunny : Animal
     protected override void OnDestroy()
     {
         SimulationManager.CurrentBunnyCount -= 1;
+        GameObject particle = Instantiate(particles, transform.position, particles.transform.rotation);
+        particle.transform.parent = gameObject.transform.parent;
     }
 }
